@@ -1,0 +1,39 @@
+# Python
+venv/
+env/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Processed data & vector index (large, machine-generated — do NOT commit)
+data/processed/
+
+# Raw dataset cache (re-downloadable — optional to exclude)
+# data/raw/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Secrets
+.env
+*.env
+
+# Database
+*.db
+*.sqlite3
+
+# Logs
+*.log
