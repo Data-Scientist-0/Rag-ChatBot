@@ -37,13 +37,26 @@ from config import (
 from generator import generate, check_ollama_connection
 
 
-# ── Page Configuration ─────────────────────────────────────────────────────────
+# ── 1. Page Configuration MUST BE FIRST ────────────────────────────────────────
 st.set_page_config(
     page_title="AeroRAG — Aerospace Knowledge Base",
     page_icon="✈️",
     layout="wide",
     initial_sidebar_state="expanded",
 )
+
+# ── 2. Database Fallback Initialization ────────────────────────────────────────
+# Check if the database directory does not exist or has no files inside
+if not os.path.exists(CHROMA_DB_PATH) or not os.listdir(CHROMA_DB_PATH):
+    st.info("📦 First-time setup: Initializing Knowledge Base on the server... Please wait.")
+    
+    try:
+        # This programmatically runs your ingest script to create the index
+        import ingest
+        st.success("✅ Knowledge Base generated successfully!")
+        st.rerun()       # Reloads the app now that data exists
+    except Exception as e:
+        st.error(f"❌ Failed to initialize index: {e}")
 
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
